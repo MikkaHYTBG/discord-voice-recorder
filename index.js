@@ -11,13 +11,14 @@ if(!config.PREFIX || !config.BOT_TOKEN) {
     console.error("Error: The configuration file was configured improperly. Please ensure there are no spelling mistakes.");
     process.exit(1);
 }
-
+console.log(config.PREFIX)
 client.on('message', msg => {
     if (msg.content.startsWith(config.PREFIX)) {
+        console.log("test")
         const commandBody = msg.content.substring(config.PREFIX.length).split(' ');
         const channelName = commandBody[1];
-        
-        if (commandBody[0] === ('enter') && commandBody[1]) commands.enter(msg, channelName);
+        if (msg.content === ",enter") commands.enter(msg, channelName) && console.log("joining vc..")
+        if (commandBody[0] === ('enter') && commandBody[1]) commands.enter(msg, channelName) && console.log("joining vc..")
         if (commandBody[0] === ('exit')) commands.exit(msg);
     }
 });
